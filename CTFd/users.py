@@ -27,9 +27,6 @@ def listing():
         .all()
     )
 
-    users.affiliation = 0
-    users.country = 0
-    users.website = 0
     pages = int(count / results_per_page) + (count % results_per_page > 0)
     return render_template("users/users.html", users=users, pages=pages, curr_page=page)
 
