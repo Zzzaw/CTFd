@@ -34,6 +34,7 @@ class UserSchema(ma.ModelSchema):
             validate.Length(min=1, max=128, error="Emails must not be empty"),
         ],
     )
+    '''
     website = field_for(
         Users,
         "website",
@@ -47,6 +48,8 @@ class UserSchema(ma.ModelSchema):
             else True
         ],
     )
+    '''
+    website = field_for(Users, "website")
     country = field_for(Users, "country", validate=[validate_country_code])
     password = field_for(Users, "password")
 
