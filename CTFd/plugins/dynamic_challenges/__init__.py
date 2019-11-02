@@ -118,17 +118,9 @@ class DynamicValueChallenge(BaseChallenge):
             .count()
         )
 
-        # It is important that this calculation takes into account floats.
-        # Hence this file uses from __future__ import division
-        value = (
-            ((challenge.minimum - challenge.initial) / (challenge.decay ** 2))
-            * (solve_count ** 2)
-        ) + challenge.initial
-
-        value = math.ceil(value)
-
-        if value < challenge.minimum:
-            value = challenge.minimum
+        # from 35c3
+        # min_points and max_points are 30 and 500 for most challenges
+        value = int(round(challenge.minimum + (challenge.initial - challenge.minimum) / (1 + (max(0, solve_count) / 11.92201) ** 1.206069)))
 
         challenge.value = value
 
@@ -210,19 +202,9 @@ class DynamicValueChallenge(BaseChallenge):
             .count()
         )
 
-        # We subtract -1 to allow the first solver to get max point value
-        solve_count -= 1
-
-        # It is important that this calculation takes into account floats.
-        # Hence this file uses from __future__ import division
-        value = (
-            ((chal.minimum - chal.initial) / (chal.decay ** 2)) * (solve_count ** 2)
-        ) + chal.initial
-
-        value = math.ceil(value)
-
-        if value < chal.minimum:
-            value = chal.minimum
+        # from 35c3
+        # min_points and max_points are 30 and 500 for most challenges
+        value = int(round(chal.minimum + (chal.initial - chal.minimum) / (1 + (max(0, solve_count - 1) / 11.92201) ** 1.206069)))
 
         chal.value = value
 
