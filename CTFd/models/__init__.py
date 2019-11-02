@@ -234,7 +234,7 @@ class Users(db.Model):
 
     # Supplementary attributes
     website = db.Column(db.String(128), unique=True)
-    affiliation = db.Column(db.String(128), unique=True)
+    affiliation = db.Column(db.String(128))
     country = db.Column(db.String(32))
     bracket = db.Column(db.String(32))
     hidden = db.Column(db.Boolean, default=False)

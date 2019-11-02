@@ -49,7 +49,7 @@ class UserSchema(ma.ModelSchema):
         ],
     )
     '''
-    affiliation = field_for(Users, "affiliation", validate=[unique_affiliation])
+    # affiliation = field_for(Users, "affiliation", validate=[unique_affiliation])
     website = field_for(Users, "website", validate=[unique_website])
     country = field_for(Users, "country", validate=[validate_country_code])
     password = field_for(Users, "password")
