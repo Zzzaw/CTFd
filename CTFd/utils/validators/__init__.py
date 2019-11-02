@@ -1,3 +1,4 @@
+#coding=utf-8
 from CTFd.utils.user import is_admin, get_current_user
 from CTFd.models import Users
 from CTFd.utils.countries import lookup_country_code
@@ -35,3 +36,21 @@ def validate_country_code(country_code):
         return
     if lookup_country_code(country_code) is None:
         raise ValidationError("Invalid Country")
+
+
+def unique_website(website, model=Users):
+    obj = model.query.filter_by(website=website).first()
+    if is_admin():
+        if obj:
+            raise ValidationError("学号已被使用")
+    if obj and obj.id != get_current_user().id:
+        raise ValidationError("学号已被使用")
+
+
+def unique_affiliation(affiliation, model=Users):
+    obj = model.query.filter_by(affiliation=affiliation).first()
+    if is_admin():
+        if obj:
+            raise ValidationError("姓名已被使用")
+    if obj and obj.id != get_current_user().id:
+        raise ValidationError("姓名已被使用")

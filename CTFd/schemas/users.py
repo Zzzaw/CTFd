@@ -2,7 +2,7 @@ from marshmallow import validate, ValidationError, pre_load
 from marshmallow_sqlalchemy import field_for
 from CTFd.models import ma, Users
 from CTFd.utils import get_config
-from CTFd.utils.validators import validate_country_code
+from CTFd.utils.validators import validate_country_code, unique_website, unique_affiliation
 from CTFd.utils.user import is_admin, get_current_user
 from CTFd.utils.crypto import verify_password
 from CTFd.utils.email import check_email_is_whitelisted
@@ -49,7 +49,8 @@ class UserSchema(ma.ModelSchema):
         ],
     )
     '''
-    website = field_for(Users, "website")
+    affiliation = field_for(Users, "affiliation", validate=[unique_affiliation])
+    website = field_for(Users, "website", validate=[unique_website])
     country = field_for(Users, "country", validate=[validate_country_code])
     password = field_for(Users, "password")
 
