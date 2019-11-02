@@ -93,10 +93,13 @@
 						</td>
 						<td class="team-website text-center">
 							{% if user.website %}
+								<span>{{ user.website | truncate(32) }}</span>
+							{#
 								<a href="{{ user.website }}" target="_blank">
 									<i class="btn-fa fas fa-external-link-alt" data-toggle="tooltip" data-placement="top"
 									   title="{{ user.website }}" aria-hidden="true"></i>
 								</a>
+							#}
 							{% endif %}
 						</td>
 						<td class="team-country" value="{{ user.country if user.country is not none }}">

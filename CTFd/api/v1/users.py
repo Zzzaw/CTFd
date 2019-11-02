@@ -143,6 +143,9 @@ class UserPrivate(Resource):
         user = get_current_user()
         data = request.get_json()
         schema = UserSchema(view="self", instance=user, partial=True)
+        # allow null student id
+        if isinstance(data, dict) and "website" in data and data["website"] == "":
+            data["website"] = None
         response = schema.load(data)
         if response.errors:
             return {"success": False, "errors": response.errors}, 400
