@@ -41,7 +41,7 @@ def validate_country_code(country_code):
 def unique_website(website, model=Users):
     if website is None:
         return
-    if re.match(r"\d{10}", website) is None:
+    if re.match(r"^\d{10}$", website) is None:
         raise ValidationError("学号格式不正确")
     obj = model.query.filter_by(website=website).first()
     if is_admin():
