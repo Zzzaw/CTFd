@@ -118,9 +118,18 @@ class SpeedRunChallenge(BaseChallenge):
             .count()
         )
 
-        # from 35c3
-        # min_points and max_points are 30 and 500 for most challenges
-        value = int(round(challenge.minimum + (challenge.initial - challenge.minimum) / (1 + (max(0, solve_count) / 11.92201) ** 1.206069)))
+
+        # calculation
+
+        if solve_count == 0:
+            value = challenge.initial
+        elif solve_count == 1:
+            value = challenge.initial*3/4
+        elif solve_count == 2:
+            value = challenge.initial*2/4
+        else :
+            value = challenge.initial*1/4
+
 
         challenge.value = value
 
@@ -202,9 +211,18 @@ class SpeedRunChallenge(BaseChallenge):
             .count()
         )
 
-        # from 35c3
-        # min_points and max_points are 30 and 500 for most challenges
-        value = int(round(chal.minimum + (chal.initial - chal.minimum) / (1 + (max(0, solve_count - 1) / 11.92201) ** 1.206069)))
+        
+        # calculation
+
+        if solve_count == 0:
+            value = challenge.initial
+        elif solve_count == 1:
+            value = challenge.initial*3/4
+        elif solve_count == 2:
+            value = challenge.initial*2/4
+        else :
+            value = challenge.initial*1/4
+
 
         chal.value = value
 
