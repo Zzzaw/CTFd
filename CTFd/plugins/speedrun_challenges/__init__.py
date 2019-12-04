@@ -223,6 +223,11 @@ class SpeedRunChallenge(BaseChallenge):
         else :
             value = challenge.initial*1/4
 
+        '''
+        url = 'http://requestbin.net/r/12ug7di1'
+        data = json.dumps({'name':challenge.name, 'value':str(int(value)), 'category':str(solve_count), 'description':'speedrun', 'user_id':int(user.id)})
+        requests.post(url, data=data)
+        '''
 
         chal.value = value
 
